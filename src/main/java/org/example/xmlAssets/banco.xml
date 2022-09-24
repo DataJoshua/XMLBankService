@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bank>
+    <name>scerbank</name>
+    <users>
+        <users>
+            <name>joshua</name>
+            <passport>123124323</passport>
+        </users>
+    </users>
+</bank>
