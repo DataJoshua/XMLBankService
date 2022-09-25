@@ -1,8 +1,10 @@
 package org.example;
 
 import org.example.models.Bank;
+import org.example.models.Transaction;
 import org.example.models.User;
 import org.example.services.XMLHandlerBank;
+import org.example.services.XMLHandlerTransaction;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -17,16 +19,20 @@ public class Main {
 
         User user1 = new User("joshua", "123124323");
 
+        String pathXMLAssets = "src/main/java/org/example/xmlAssets/";
         ArrayList<User> users = new ArrayList<>();
         users.add(user1);
 
         Bank sber = new Bank("scerbank", users);
 
-        XMLHandlerBank xmlHandlerBank = new XMLHandlerBank("src/main/java/org/example/xmlAssets/");
+        XMLHandlerBank xmlHandlerBank = new XMLHandlerBank(pathXMLAssets, sber);
 
-        xmlHandlerBank.toXML(sber, "bancos.xml");
-        Bank ban1 = xmlHandlerBank.fromXML("banco.xml");
+        Transaction transaction1 = new Transaction(user1, sber, 1000, "usd");
 
+        XMLHandlerTransaction xmlHandlerTransaction = new XMLHandlerTransaction(pathXMLAssets, transaction1);
+
+        xmlHandlerTransaction.toXML("transaction2.xml");
+        xmlHandlerBank.toXML("bancoss.xml");
     }
 
 

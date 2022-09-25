@@ -9,19 +9,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class XMLHandlerBank {
+public class XMLHandlerBank extends XMLHandler{
 
-    private String path;
 
-    public XMLHandlerBank(String path) {
-        this.path = path;
+    private Bank bank;
+    public XMLHandlerBank(String path, Bank bank) {
+        super(path);
+        this.bank = bank;
     }
 
-    public void toXML(Bank bank, String filename) throws JAXBException {
+
+    public void toXML(String filename) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Bank.class);
         Marshaller mar= context.createMarshaller();
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(bank, new File(this.path + filename));
+        mar.marshal(this.bank, new File(this.path + filename));
     }
 
 
